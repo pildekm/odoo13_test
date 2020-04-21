@@ -12,6 +12,7 @@ odoo.define('website_cookie_notice.cookie_notice', function (require) {
     base.ready().done(function() {
         $(".cc-cookies .btn-primary").click(function(e) {
             e.preventDefault();
+            console.log('Pičkoooooo');
             ajax.jsonRpc('/website_cookie_notice/ok', 'call').then(function (data) {
                 if (data.result == 'ok') {
                     $(e.target).closest(".cc-cookies").hide("fast");
