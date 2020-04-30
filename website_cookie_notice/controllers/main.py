@@ -6,9 +6,8 @@ from odoo import http
 
 
 class CookieNotice(http.Controller):
-    @http.route(
-        "/website_cookie_notice/ok", auth="public", website=True, type='json',
-        methods=['POST'])
+
+    @http.route("/website_cookie_notice/ok", auth="public", website=True, type='json',methods=['POST'])
     def accept_cookies(self):
         """Stop spamming with cookie banner."""
         http.request.session["accepted_cookies"] = True
@@ -16,3 +15,7 @@ class CookieNotice(http.Controller):
             ('type', '=', 'qweb')
         ]).clear_caches()
         return {'result': 'ok'}
+
+    # @http.route(auth="public", website=True, type='json', methods=['POST'])
+    # def cookies_text(self):
+    #     print('Cookie pičko')

@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Add legal terms and conditions page link after copyright and company name -->
-    <template
-        id="legal_page_link"
-        inherit_id="website.footer_custom"
-        name="Legal page Link"
-        customize_show="True"
-    >
+    <template id="legal_page_link" inherit_id="website.footer_custom" name="Legal page Link" customize_show="True">
         <xpath expr="//footer//div/span[@t-field='res_company.name']" position="after">
             <span class="legal_page">-
                 <a href="/legal">Legal Page</a>
