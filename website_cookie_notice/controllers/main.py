@@ -3,6 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import http
+from odoo.http import request
+from odoo.addons.website.controllers.main import Website
 
 
 class CookieNotice(http.Controller):
@@ -16,6 +18,12 @@ class CookieNotice(http.Controller):
         ]).clear_caches()
         return {'result': 'ok'}
 
-    # @http.route(auth="public", website=True, type='json', methods=['POST'])
-    # def cookies_text(self):
-    #     print('Cookie pičko')
+class WebsiteCookie(Website):
+
+    @http.route('/', type='http', auth="public", website=True)
+    def index(self, **kw):
+        res = super(WebsiteCookie, self).index(**kw)
+        print('Cookie pičko')
+        values = {'button_name': 'Yes'}
+        return request.render('website_cookie_notice.cookiebanner', values)
+
