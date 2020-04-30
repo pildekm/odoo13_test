@@ -9,16 +9,17 @@ odoo.define('website_cookie_notice.cookie_notice', function (require) {
     var ajax = require('web.ajax');
     var base = require('web_editor.base');
 
-    base.ready().done(function() {
-        $(".cc-cookies .btn-primary").click(function(e) {
-            e.preventDefault();
-            console.log('Pičkoooooo');
+    $(".cc-cookies .btn-primary").click(function(event) {
+            event.preventDefault();
             ajax.jsonRpc('/website_cookie_notice/ok', 'call').then(function (data) {
                 if (data.result == 'ok') {
-                    $(e.target).closest(".cc-cookies").hide("fast");
+                    $(event.target).closest(".cc-cookies").hide("fast");
                 }
             });
         });
-    });
+
+    // base.ready().done(function() {
+    //
+    // });
 }
 );

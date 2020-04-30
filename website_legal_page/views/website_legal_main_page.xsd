@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="odoo" type="odooType"/>
+  <xs:complexType name="aType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="href" use="optional"/>
+        <xs:attribute type="xs:string" name="class" use="optional"/>
+        <xs:attribute type="xs:string" name="id" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="spanType" mixed="true">
+    <xs:sequence>
+      <xs:element type="aType" name="a"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="class"/>
+  </xs:complexType>
+  <xs:complexType name="xpathType">
+    <xs:sequence>
+      <xs:element type="spanType" name="span"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="expr"/>
+    <xs:attribute type="xs:string" name="position"/>
+  </xs:complexType>
+  <xs:complexType name="templateType">
+    <xs:sequence>
+      <xs:element type="xpathType" name="xpath" minOccurs="0"/>
+      <xs:element type="tType" name="t" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="xs:string" name="inherit_id" use="optional"/>
+    <xs:attribute type="xs:string" name="name" use="optional"/>
+    <xs:attribute type="xs:string" name="customize_show" use="optional"/>
+    <xs:attribute type="xs:string" name="priority" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="tType" mixed="true">
+    <xs:sequence>
+      <xs:element type="tType" name="t" minOccurs="0"/>
+      <xs:element type="divType" name="div" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="t-set" use="optional"/>
+    <xs:attribute type="xs:string" name="t-value" use="optional"/>
+    <xs:attribute type="xs:string" name="t-call" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="iType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="class"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="pType" mixed="true">
+    <xs:sequence>
+      <xs:element type="xs:string" name="br" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="aType" name="a" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="divType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="pType" name="p"/>
+      <xs:element type="iType" name="i"/>
+      <xs:element type="divType" name="div"/>
+      <xs:element type="h1Type" name="h1"/>
+      <xs:element type="ulType" name="ul"/>
+      <xs:element type="hrType" name="hr"/>
+      <xs:element type="xs:string" name="h2"/>
+      <xs:element type="sectionType" name="section">
+        <xs:annotation>
+          <xs:documentation>Introduction  Intellectual Property Rights  Restrictions  Your Content  Warranties  Limitation of Liability  Indemnification  Severability  Variation of Terms  Assignment  Law and Juridisction</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="class" use="optional"/>
+    <xs:attribute type="xs:string" name="data-name" use="optional"/>
+    <xs:attribute type="xs:string" name="style" use="optional"/>
+    <xs:attribute type="xs:string" name="id" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="fontType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="style"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="h1Type">
+    <xs:sequence>
+      <xs:element type="fontType" name="font"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="class"/>
+  </xs:complexType>
+  <xs:complexType name="sectionType">
+    <xs:sequence>
+      <xs:element type="aType" name="a" minOccurs="0"/>
+      <xs:element type="divType" name="div"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="class" use="optional"/>
+    <xs:attribute type="xs:string" name="data-name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="liType">
+    <xs:sequence>
+      <xs:element type="pType" name="p"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ulType" mixed="true">
+    <xs:sequence>
+      <xs:element type="liType" name="li" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="hrType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="class" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="fieldType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="ref" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="recordType">
+    <xs:sequence>
+      <xs:element type="fieldType" name="field" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id"/>
+    <xs:attribute type="xs:string" name="model"/>
+  </xs:complexType>
+  <xs:complexType name="odooType">
+    <xs:sequence>
+      <xs:element type="templateType" name="template" maxOccurs="unbounded" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Add legal terms and conditions page link after copyright and company name  Main Legal Page Template</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element type="recordType" name="record">
+        <xs:annotation>
+          <xs:documentation>Publish the template on the website</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
