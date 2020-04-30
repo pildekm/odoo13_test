@@ -8,21 +8,21 @@
 </template>
 
 
-<template id="message" name="Cookies notice">
-    <div t-if="request and
-        not request.session.get('accepted_cookies')"
-        id="website_cookie_notice"
-        class="container-fluid cc-cookies alert alert-warning" role="alert">
+ <template id="message" name="Cookies notice">
+    <div id="website_cookie_notice"
+         class="container-fluid cc-cookies alert alert-warning fixed-bottom"
+         role="alert">
         <div class="container">
             <div class="row">
-                <div class="col-sm-10">We use cookies in this website. Read about them in our <a href="/legal/privacy-policy" class="alert-link">privacy policy</a>. To disable them, configure your browser properly. If you keep using this website, you are accepting those.</div>
+                <div class="col-sm-10"><img src="/website_cookie_notice/static/src/img/cookie_bite.png" width="30" height="30"/>We use cookies in this website. Read about them in our <a href="/legal/privacy-policy" class="alert-link">privacy policy</a>. To disable them, configure your browser properly. If you keep using this website, you are accepting those.</div>
                 <div class="col-sm-2 text-center">
-                    <a class="btn btn-primary" href="#">OK</a>
+                    <button class="btn btn-primary"><t t-att-value="button_name"/></button>
                 </div>
             </div>
         </div>
     </div>
-</template>
+ </template>
+
 
 <template id="cookiebanner" inherit_id="website.layout">
     <xpath expr="//header" position="before">
